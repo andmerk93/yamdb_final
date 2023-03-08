@@ -9,7 +9,7 @@ services:
       - ./.env
 
   web:
-    build: ../api_yamdb/
+    image: andmerk93/yamdb
     restart: always
     volumes:
       - static_value:/app/api_yamdb/api/static/
