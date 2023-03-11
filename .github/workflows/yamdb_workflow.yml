@@ -64,10 +64,11 @@ jobs:
             echo SECRET_KEY=${{ secrets.SECRET_KEY }} >> .env
             echo ALLOWED_HOSTS=${{ secrets.ALLOWED_HOSTS }} >> .env
             docker stop $(docker ps -aq)
-            docker compose build
-            docker compose up -d 
+            docker compose up --build -d 
             docker compose exec web python manage.py migrate
             docker compose exec web python manage.py collectstatic --no-input
+            docker container prune
+            docker image prune
 
   send_message:
     runs-on: ubuntu-latest
