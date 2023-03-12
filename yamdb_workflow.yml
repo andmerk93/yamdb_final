@@ -5,11 +5,15 @@ on: [push]
 jobs:
   tests:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ["3.7", "3.8", "3.9", "3.10"]
+  
     steps:
     - uses: actions/checkout@v3
     - uses: actions/setup-python@v4
       with:
-        python-version: 3.7
+        python-version:  ${{ matrix.python-version }}
 
     - name: Install dependencies
       run: | 
@@ -64,11 +68,11 @@ jobs:
             echo SECRET_KEY=${{ secrets.SECRET_KEY }} >> .env
             echo ALLOWED_HOSTS=${{ secrets.ALLOWED_HOSTS }} >> .env
             docker stop $(docker ps -aq)
-            docker compose up --build -d 
+            docker compose up --build -d
             docker compose exec web python manage.py migrate
             docker compose exec web python manage.py collectstatic --no-input
-            docker container prune
-            docker image prune
+            docker container prune -f
+            docker image prune -f
 
   send_message:
     runs-on: ubuntu-latest
