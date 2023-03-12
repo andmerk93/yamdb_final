@@ -1,7 +1,6 @@
 # CI/CD и Docker Проекта YaMDb
 
-![Tests](https://github.com/andmerk93/yamdb_final/actions/workflows/01.yml/badge.svg)
-![Deploy](https://github.com/andmerk93/yamdb_final/actions/workflows/02.yml/badge.svg)
+![workflows](https://github.com/andmerk93/yamdb_final/actions/workflows/yamdb_workflow.yml/badge.svg)
 
 Проект YaMDb собирает отзывы пользователей на произведения. Сами произведения в YaMDb не хранятся, здесь нельзя посмотреть фильм или послушать музыку.
 
