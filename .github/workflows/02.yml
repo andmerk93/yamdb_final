@@ -6,7 +6,7 @@ on:
 
 jobs:
   tests1: 
-    uses: ./.github/workflows/first_workflow.yml
+    uses: ./.github/workflows/01.yml
 
   build_and_push:
     runs-on: ubuntu-latest
