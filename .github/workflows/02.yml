@@ -46,9 +46,8 @@ jobs:
             echo DB_PORT=${{ secrets.DB_PORT }} >> .env
             echo SECRET_KEY=${{ secrets.SECRET_KEY }} >> .env
             echo ALLOWED_HOSTS=${{ secrets.ALLOWED_HOSTS }} >> .env
-            docker stop $(docker ps -aq)
-            docker container prune -f
-            docker image prune -f
+            docker compose down
+            docker image rm andmerk93/yamdb
             docker compose up --build --force-recreate -d
             docker compose exec web python manage.py migrate
             docker compose exec web python manage.py collectstatic --no-input
